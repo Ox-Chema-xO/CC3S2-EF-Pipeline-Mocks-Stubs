@@ -1,6 +1,5 @@
 import pytest
 from unittest.mock import Mock
-from fastapi.testclient import TestClient
 
 @pytest.fixture
 def user_fixture():
@@ -26,3 +25,13 @@ def authenticated_client_fixture(user_fixture):
     #Simulamos autenticado
     mock_client.is_authenticated = True
     return mock_client
+
+@pytest.mark.xfail(reason="Fallara porque aun no se implementa el acceso por token")
+def test_authenticated_user_token(user_fixture):
+    acceso = False
+    mock_user = Mock()
+    mock_user.return_value
+    mock_user.user = user_fixture
+    mock_user.user.token = True
+    #Como aun no se implementa el acceso por token esto fallara
+    assert acceso == True
